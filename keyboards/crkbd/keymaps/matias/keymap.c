@@ -53,52 +53,66 @@ enum {
     TD_CAPLOCK
 };
 
-#define RE_MAY TD(TD_CAPLOCK)
-#define RE_CPY RCTL(KC_C)
-#define RE_PST RCTL(KC_V)
-#define RE_CEN RCTL(KC_ENT)
-#define RE_TES RGB_MODE_RGBTEST
-
-#define RE_NUBS LSFT(KC_NUBS)
-#define RE_QUOT LSFT(KC_QUOT)
-#define RE_BSLS LSFT(KC_BSLS)
-
-const char *read_layer_state(void);
-const char *read_logo(void);
-void set_keylog(uint16_t keycode, keyrecord_t *record);
-const char *read_keylog(void);
-const char *read_keylogs(void);
-const char *read_rgb_info(void);
-const char *read_rgb_mode(void); 
-const char *read_mtx_on_off(void); 
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
+    /* QWERTY
+ * ,-----------------------------------------.                   ,-----------------------------------------.
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |                   |   Y  |   U  |   I  |   O  |   P  | BSP  |
+ * |------+------+------+------+------+------|                   |------+------+------+------+------+------|
+ * |LShift|   A  |   S  |   D  |   F  |   G  |                   |   H  |   J  |   K  |   L  |   ñ  |  '¨  |
+ * |------+------+------+------+------+------|                   |------+------+------+------+------+------|
+ * |LCTRL |   Z  |   X  |   C  |   V  |   B  |                   |   N  |   M  |  ,;  |  .:  |  -_  |RShift|
+ * `-----------------------------------------/                   |-----------------------------------------'
+ *                             | WIN  |LOWER | Space |    |Enter |  RAISE | RALT |
+  *                            `----------------------'   '----------------------'
+ */
+
   [_QWERTY] = LAYOUT(
-  //|----------------------------------------------------|                     |-----------------------------------------------------------------|
-     KC_TAB  , KC_Q   , KC_W   , KC_E   , KC_R  ,  KC_T,                          KC_Y,    KC_U,    KC_I,    KC_O,       KC_P,    KC_BSPC,
-  //|--------+--------+--------+--------+-------+--------|                     |--------+--------+--------+--------+-----------+-----------------|
-     RE_MAY  , KC_A   , KC_S   , KC_D   , KC_F  ,  KC_G,                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,    KC_LBRC,
-  //---------+--------+--------+--------+-------+--------|                     |--------+--------+--------+--------+-----------+-----------------|
-     KC_LCTL , KC_Z   , KC_X   , KC_C   , KC_V  ,  KC_B,                          KC_N,    KC_M, KC_COMM, KC_DOT ,    KC_SLSH, RSFT_T(KC_ENT),
-  //---------+--------+--------+--------+-------+--------|                     |--------+--------+--------+--------+-----------+-----------------|
-                                         KC_LGUI, LOWER ,  KC_SPC,      KC_ENT , RAISE  , KC_RALT
-                                     //|---------------------------|   |--------------------------|
+  //|----------------------------------------------------------|                     |-----------------------------------------------------------------|
+     KC_TAB        , KC_Q   , KC_W   , KC_E   , KC_R  ,    KC_T,                          KC_Y,    KC_U,    KC_I,    KC_O,       KC_P,    KC_BSPC,
+  //|--------------+--------+--------+--------+-------+--------|                     |--------+--------+--------+--------+-----------+-----------------|
+     TD(TD_CAPLOCK), KC_A   , KC_S   , KC_D   , KC_F  ,    KC_G,                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,    KC_LBRC,
+  //---------------+--------+--------+--------+-------+--------|                     |--------+--------+--------+--------+-----------+-----------------|
+     KC_LCTL       , KC_Z   , KC_X   , KC_C   , KC_V  ,    KC_B,                          KC_N,    KC_M, KC_COMM, KC_DOT ,    KC_SLSH, RSFT_T(KC_ENT),
+  //---------------+--------+--------+--------+-------+--------|                     |--------+--------+--------+--------+-----------+-----------------|
+                                                KC_LGUI, LOWER ,  KC_SPC,     KC_ENT , RAISE  , KC_RALT
+                                    //|----------------------------------|   |--------------------------|
 
 
   ),
-
+/* LOWER     
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * | ESC  |  1!  |  2"  |  3#  |  4$  |  5 % |                    |  6&  |  7/  |  8(  |  9)  |  0=  |  BSP |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |LShift| HOME |  UP  |  END |  INS | PGUP |                    |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |LCTRL | LEFT | DOWN | RIGHT|  DEL | PGDW |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
+  * `----------------------------------------/                    \-----------------------------------------'
+ *                             | LALT |LOWER | /Enter  /   \ Enter|RAISE | RALT |
+ *                             `-----------------------'   '--------------------'
+ */
   [_LOWER] = LAYOUT(
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
      KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     KC_LSFT, KC_HOME,   KC_UP,  KC_END,  KC_INS, KC_PGUP,                      KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,
+     KC_LSFT, KC_HOME,   KC_UP,  KC_END,  KC_INS, KC_PGUP,                        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     KC_LCTL, KC_LEFT, KC_DOWN, KC_RGHT,  KC_DEL, KC_PGDN,                      KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,
+     KC_LCTL, KC_LEFT, KC_DOWN, KC_RGHT,  KC_DEL, KC_PGDN,                        KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                          KC_LALT, KC_TRNS, KC_ENT,    KC_ENT, RAISE, KC_RALT
                                       //|--------------------------|  |--------------------------|
   ),
-
+/* RAISE
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * | ESC  |      |      |      |      |      |                    |  &   |  /   | (    | )    |   =  | BSP  |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |LShift| HOME |  UP  |  END |  INS | PGUP |                    |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |LCTRL | LEFT | DOWN | RIGHT|  DEL | PGDW |                    |      |      |      |      |      |      |
+ * `-----------------------------------------/                    \-----------------------------------------'
+ *                             | LGUI |LOWER | Space /   \ Enter \RAISE | RAlt|
+ *                             `---------------------'   '--------------------'
+ */
   [_RAISE] = LAYOUT(
   //|----------------------------------------------------|                    |-----------------------------------------------------|
      KC_ESC,  KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
@@ -141,7 +155,10 @@ void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
     if (IS_LAYER_ON(layer1) && IS_LAYER_ON(layer2)) {
         layer_on(layer3);
     } else {
-        layer_off(layer3);
+        layer_off(layer3);   
+        
+        if (IS_LAYER_ON(layer1)) layer_on(layer1); 
+        if (IS_LAYER_ON(layer2)) layer_on(layer2);     
     }
 }
 
@@ -175,7 +192,7 @@ void rgb_matrix_indicators_user(void) {
                 }
                 break;
         }
-        
+
         if (led_timer == 0) led_timer = timer_read32();
         if (timer_elapsed32(led_timer) >= 60000 && (frgb_aut == 1)) {
             rgb_matrix_step_noeeprom();
@@ -258,7 +275,7 @@ void rgb_matrix_indicators_user(void) {
         }
     }
 
-
+  
     void render_mod_status_ctrl_shift(uint8_t modifiers) {
         static const char PROGMEM ctrl_off_1[] = {0x89, 0x8a, 0};
         static const char PROGMEM ctrl_off_2[] = {0xa9, 0xaa, 0};
@@ -323,29 +340,24 @@ void rgb_matrix_indicators_user(void) {
         } else {
             oled_write_P(shift_off_2, false);
         }
-    }
+    }  
 
-    void render_logo(void) {
+    void render_logo_i(void) {
         static const char PROGMEM corne_logo[] = {
             0x80, 0x81, 0x82, 0x83, 0x84,
             0xa0, 0xa1, 0xa2, 0xa3, 0xa4,
             0xc0, 0xc1, 0xc2, 0xc3, 0xc4, 0};
         oled_write_P(corne_logo, false);
-        oled_write_P(PSTR("corne"), false);
+        oled_write_P(PSTR("Mati "), false);
     }
 
-    void render_logo_rw(void) {
+        void render_logo_d(void) {
         static const char PROGMEM corne_logo[] = {
             0x80, 0x81, 0x82, 0x83, 0x84,
             0xa0, 0xa1, 0xa2, 0xa3, 0xa4,
             0xc0, 0xc1, 0xc2, 0xc3, 0xc4, 0};
-            oled_write_P(corne_logo, false);
-            //oled_write_P(PSTR("ReeW "), false);
-            if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
-                oled_write_P(PSTR("REEW "), false);
-            } else {
-                oled_write_P(PSTR("ReeW "), false);
-            }
+        oled_write_P(corne_logo, false);
+        oled_write_P(PSTR("Urra "), false);
     }
 
     void render_layer_state(void) {
@@ -377,36 +389,28 @@ void rgb_matrix_indicators_user(void) {
     }
 
     void render_status_main(void) {
-        //render_logo_i();
-        render_logo_rw();
+        render_logo_i();
+        //render_logo_rw();
         render_space();
         render_layer_state();
         render_space();
         render_mod_status_gui_alt(get_mods()|get_oneshot_mods());
         render_mod_status_ctrl_shift(get_mods()|get_oneshot_mods());
-        oled_write(read_keylog(), false);
-        oled_write(read_keylogs(), false);
-        oled_write(read_mtx_on_off(), false);
     }
 
     void render_status_secondary(void) {
-         //render_logo_d();
-         render_logo_rw();
+         render_logo_d();
+         //render_logo_rw();
          render_space();
          render_layer_state();
          render_space();
          render_mod_status_gui_alt(get_mods()|get_oneshot_mods());
          render_mod_status_ctrl_shift(get_mods()|get_oneshot_mods());
          // oled_write_P(PSTR("rober"), false);
-          if (frgb_aut == 1) {
-             oled_write("AUTO ",false);
-         } else {
-             oled_write("     ",false);
-         }
     }
 
     void oled_task_user(void) {
-        if (timer_elapsed32(oled_timer) > 60000) {
+        if (timer_elapsed32(oled_timer) > 1800000) {
             oled_off();
             return;
         }
@@ -427,7 +431,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         #ifdef OLED_DRIVER_ENABLE
             oled_timer = timer_read32();
-            set_keylog(keycode, record);
         #endif
     // set_timelog();
     }
@@ -460,21 +463,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case MACRO1:
             if (record->event.pressed) {
-                    SEND_STRING("853211utc");
+                    SEND_STRING("hola tio");
                 } else {
                     
                 }
                 return false;
         case MACRO2:
             if (record->event.pressed) {
-                    SEND_STRING("select } from dual ");
+                    SEND_STRING("hola mati, te amo.");
                 } else {
                     
                 }
                 return false;
         case MACRO3:
             if (record->event.pressed) {
-                    SEND_STRING("13700724K");
+                    SEND_STRING("te amo, mama");
                 }
             return false;
         case RGBAUT:
@@ -491,7 +494,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                  }
              }
             #endif
-            return false;  
+            return false;
         case RGBRST:
             #ifdef RGBLIGHT_ENABLE
                 if (record->event.pressed) {

@@ -12,19 +12,17 @@
 // #define SSD1306OLED
 #undef USE_I2C
 #undef SSD1306OLED
+#undef PRODUCT
+#define PRODUCT         Matias Keyboard Rev.1 (Legacy Split)
 
 #define USE_SERIAL_PD2
 
 // #define TAPPING_FORCE_HOLD
-#define RGBLIGHT_SLEEP
 #define TAPPING_TERM 200
 //#define RETRO_TAPPING
 #define IGNORE_MOD_TAP_INTERRUPT
 
-#undef PRODUCT
-#define PRODUCT         ReeW Keyboard Rev.1 (Legacy Split)
-
-#define OLED_FONT_H "keyboards/crkbd/keymaps/robrstein2/glcdfont.c"
+#define OLED_FONT_H "keyboards/crkbd/keymaps/matias/glcdfont.c"
 // #define OLED_FONT_WIDTH 5
 // #define OLED_FONT_HEIGHT 7
 
@@ -44,8 +42,8 @@
 
 /* Disable the animations you don't want/need.  You will need to disable a good number of these    *
  * because they take up a lot of space.  Disable until you can successfully compile your firmware. */
-#   define DISABLE_RGB_MATRIX_ALPHAS_MODS
-#   define DISABLE_RGB_MATRIX_GRADIENT_UP_DOWN
+//#   define DISABLE_RGB_MATRIX_ALPHAS_MODS
+//#   define DISABLE_RGB_MATRIX_GRADIENT_UP_DOWN
 //#   define DISABLE_RGB_MATRIX_BREATHING 
 #   define DISABLE_RGB_MATRIX_BAND_SAT
 #   define DISABLE_RGB_MATRIX_BAND_VAL
@@ -53,7 +51,7 @@
 #   define DISABLE_RGB_MATRIX_BAND_PINWHEEL_VAL
 #   define DISABLE_RGB_MATRIX_BAND_SPIRAL_SAT
 #   define DISABLE_RGB_MATRIX_BAND_SPIRAL_VAL
-#   define DISABLE_RGB_MATRIX_CYCLE_ALL
+//#   define DISABLE_RGB_MATRIX_CYCLE_ALL
 //#   define DISABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
 //#   define DISABLE_RGB_MATRIX_CYCLE_UP_DOWN
 //#   define DISABLE_RGB_MATRIX_CYCLE_OUT_IN
@@ -67,17 +65,17 @@
 #   define DISABLE_RGB_MATRIX_RAINDROPS
 #   define DISABLE_RGB_MATRIX_JELLYBEAN_RAINDROPS
 #   define DISABLE_RGB_MATRIX_TYPING_HEATMAP
-#   define DISABLE_RGB_MATRIX_DIGITAL_RAIN
+//#   define DISABLE_RGB_MATRIX_DIGITAL_RAIN
 #   define DISABLE_RGB_MATRIX_SOLID_REACTIVE
-//#   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
+#   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE // feo
 #   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE
-//#   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE
+#   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE //feotttreuurfttr
 #   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_CROSS
 #   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS
-//#   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS
+#   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS //feo
 //#   define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS
-//#   define DISABLE_RGB_MATRIX_SPLASH
+#   define DISABLE_RGB_MATRIX_SPLASH // todo rojo
 #   define DISABLE_RGB_MATRIX_MULTISPLASH
 #   define DISABLE_RGB_MATRIX_SOLID_SPLASH
-#   define DISABLE_RGB_MATRIX_SOLID_MULTISPLASH
+#   define DISABLE_RGB_MATRIX_SOLID_MULTISPLASH 
 #endif
