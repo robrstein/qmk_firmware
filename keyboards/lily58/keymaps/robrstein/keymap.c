@@ -172,7 +172,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
         case MACRO1:
             if (record->event.pressed) {
-                    SEND_STRING("853211utc");
+                    SEND_STRING("853211ip");
             }
             return false;
         case MACRO2:
